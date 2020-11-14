@@ -11,6 +11,17 @@ Graph::Graph(int num_v) : m_matrix_size(num_v)
     }
 }
 
+Graph::Graph(int num_v, bool adj_matrix[MATRIX_SIZE][MATRIX_SIZE]) : m_matrix_size(num_v)
+{
+    for (int i=0; i<num_v; i++)
+    {
+        for (int j=0; j<num_v; j++)
+        {
+            m_adj_matrix[i][j] = adj_matrix[i][j];
+        }
+    }
+}
+
 bool Graph::addEdge(int n_1, int n_2) 
 {
     if(hasEdge(n_1, n_2) || n_1 == n_2)

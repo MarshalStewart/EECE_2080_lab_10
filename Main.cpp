@@ -9,10 +9,32 @@ int main()
 {
     bool run = true;
     int input = 0;
+    char use_matrix;
+    std::string row = "";
     int n_1, n_2, n;
     std::vector<int> edges; 
-
+    bool matrix[MATRIX_SIZE][MATRIX_SIZE];
     Graph graph(10);
+
+    std::cout << "Load a matrix file? (y, n)" << std::endl;
+    std::cin >> use_matrix;
+
+    int count = 0;
+    if(use_matrix == 'y')
+    {
+        std::cout << "Loading matrix file\n";
+        for (int i=0; i<10; i++)
+        {
+            for (int j=0; j<10; j++)
+            {
+                std::cin >> row;
+                matrix[i][j] = std::stoi(row);
+            }
+
+        }
+    
+        graph = Graph(10, matrix);
+    }
     
     while(run)
     {

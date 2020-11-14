@@ -50,6 +50,8 @@ TEST(Graph, RemoveEdge)
     ASSERT_TRUE(graph.hasEdge(1, 2)); 
     graph.removeEdge(1, 2);
     ASSERT_FALSE(graph.hasEdge(1, 2));
+
+    ASSERT_FALSE(graph.removeEdge(1, 2)); // negative test case
 }
 
 TEST(Graph, RemoveEdge_ALOT)

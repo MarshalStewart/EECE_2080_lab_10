@@ -9,6 +9,7 @@ class Graph
 {
 public:
     Graph(int num_v);
+    Graph(int num_v, bool adj_matrix[MATRIX_SIZE][MATRIX_SIZE]);
     ~Graph() {};
 
     bool addEdge(int n_1, int n_2); // Add edge (i,j) to E
