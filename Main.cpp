@@ -11,9 +11,9 @@ int main()
     int input = 0;
     char use_matrix;
     std::string row = "";
-    int n_1, n_2, n;
+    int n_1, n_2, n, weight;
     std::vector<int> edges; 
-    bool matrix[MATRIX_SIZE][MATRIX_SIZE];
+    int matrix[MATRIX_SIZE][MATRIX_SIZE] = {0};
     Graph graph(10);
 
     std::cout << "Load a matrix file? (y, n)" << std::endl;
@@ -56,6 +56,8 @@ int main()
                 std::cin >> n_1;
                 std::cout << "Enter the second node:" << std::endl;
                 std::cin >> n_2;
+                std::cout << "Enter the weight between first and second node:" << std::endl;
+                std::cin >> weight;
 
                 // Check if valid input
                 if ((n_1 > 100 || n_1 < 0 ) || (n_2 > 100 || n_2 < 0))
@@ -65,7 +67,7 @@ int main()
                 }
 
                 // add the edge
-                if (graph.addEdge(n_1, n_2))
+                if (graph.addEdge(n_1, n_2, weight))
                     printf("Added edge from %d to %d\n", n_1, n_2);
                 else
                     printf("Failed to add edge\n");

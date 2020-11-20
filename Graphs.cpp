@@ -11,7 +11,7 @@ Graph::Graph(int num_v) : m_matrix_size(num_v)
     }
 }
 
-Graph::Graph(int num_v, bool adj_matrix[MATRIX_SIZE][MATRIX_SIZE]) : m_matrix_size(num_v)
+Graph::Graph(int num_v, int adj_matrix[MATRIX_SIZE][MATRIX_SIZE]) : m_matrix_size(num_v)
 {
     for (int i=0; i<num_v; i++)
     {
@@ -22,16 +22,16 @@ Graph::Graph(int num_v, bool adj_matrix[MATRIX_SIZE][MATRIX_SIZE]) : m_matrix_si
     }
 }
 
-bool Graph::addEdge(int n_1, int n_2) 
+bool Graph::addEdge(int n_1, int n_2, int val)
 {
     if(hasEdge(n_1, n_2) || n_1 == n_2)
         return false;
     else
-        m_adj_matrix[n_1][n_2] = 1;
+        m_adj_matrix[n_1][n_2] = val;
         return true;
 }
 
-bool Graph::removeEdge(int n_1, int n_2) 
+bool Graph::removeEdge(int n_1, int n_2)
 {
     if(!hasEdge(n_1, n_2))
         return false;
@@ -42,7 +42,7 @@ bool Graph::removeEdge(int n_1, int n_2)
 
 bool Graph::hasEdge(int n_1, int n_2) 
 {
-    return m_adj_matrix[n_1][n_2];
+    return (m_adj_matrix[n_1][n_2] != 0);
 }
 
 std::vector<int> Graph::outEdges(int n) 
@@ -67,14 +67,13 @@ std::string Graph::printGraph()
 {
     std::string str = "  0 1 2 3 4 5 6 7 8 9\n";
 
-
     for (int i=0; i<m_matrix_size; i++)
     {
         str += std::to_string(i);
         str += " ";
         for (int j=0; j<m_matrix_size; j++)
         {
-            str += std::to_string((int)m_adj_matrix[i][j]);
+            str += std::to_string(m_adj_matrix[i][j]);
             str += " ";
         }
         str += "\n";
@@ -90,7 +89,7 @@ bool Graph::isEmpty()
     {
         for (int j=0; j<m_matrix_size; j++)
         {
-            if (m_adj_matrix[i][j])
+            if (m_adj_matrix[i][j] != 0)
                 return false;
         }
     }
